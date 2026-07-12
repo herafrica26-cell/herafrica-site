@@ -77,8 +77,12 @@ function MemberCard({ m, i }: { m: Member; i: number }) {
       </div>
 
       <h3 className="mt-7 font-display text-xl font-bold text-white">{m.name}</h3>
-      <p className="mt-1 text-sm font-semibold text-gold">{m.title}</p>
-      <p className="mt-3 text-sm leading-relaxed text-white/60">{m.role}</p>
+      {m.interests && (
+        <p className="mt-2 text-sm leading-relaxed text-white/70">
+          <span className="font-semibold text-gold">Interests: </span>
+          {m.interests}
+        </p>
+      )}
 
       <div className="mt-auto flex items-center gap-3 pt-4 text-sm text-white/65">
         <span className="flex items-center gap-1">

@@ -88,22 +88,20 @@ export const problem = {
 /* ------------------------------------------------------------------ */
 export type Member = {
   name: string;
-  title: string; // interests (from the Challenge 01 intros) — or "Team Lead" for the lead
-  role: string; // one-line description
+  interests?: string; // verbatim from the Challenge 01 intro transcript; blank if they weren't profiled there
   country: string;
   email: string;
   photo?: string;
   lead?: boolean;
 };
 
-// Ordered by contribution to the project — the Team Lead first, then members
-// ranked by usefulness. (Photos are free-licensed placeholders in public/team/
-// — swap them for real headshots any time.)
+// No job titles/roles are assigned — the members never stated any. Names,
+// countries and interests are taken from the Challenge 01 intro-video
+// transcript. Kevine & Elina weren't profiled in that intro, so they have no
+// stated interests here. Photos in public/team/ are placeholders — swap freely.
 export const team: Member[] = [
   {
     name: "Kevine Umuganwa",
-    title: "Team Lead",
-    role: "Leads the think tank — logistics, planning & team coordination.",
     country: "Rwanda",
     email: "k.umuganwa@alustudent.com",
     photo: "/team/kevine.jpg",
@@ -111,40 +109,34 @@ export const team: Member[] = [
   },
   {
     name: "Jean Chretien Horugavye",
-    title: "Technology & AI",
-    role: "Builds HerSafe Space — technical execution and AI development.",
+    interests: "Technology, Artificial Intelligence (AI)",
     country: "Burundi",
     email: "j.horugavye@alustudent.com",
     photo: "/team/jean.jpg",
   },
   {
     name: "Ian Misati",
-    title: "Healthcare & Women’s Healthcare",
-    role: "Healthcare & women’s healthcare expertise — grounds the work in real health experience.",
+    interests: "Healthcare, Women’s Healthcare",
     country: "Nairobi, Kenya",
     email: "i.misati@alustudent.com",
     photo: "/team/ian.jpg",
   },
   {
     name: "Miriam Meles",
-    title: "Pan-Africanism, Tech & Fashion",
-    role: "Trilingual — English, Swahili & Tigrinya — makes the platform speak their language.",
+    interests: "Pan-Africanism, Tech, Fashion",
     country: "Eritrea",
     email: "m.meles@alustudent.com",
     photo: "/team/miriam.jpg",
   },
   {
     name: "Elina Mugiraneza",
-    title: "Community & Outreach",
-    role: "Interpersonal energy — community engagement and outreach.",
     country: "Rwanda",
     email: "e.mugiranez@alustudent.com",
     photo: "/team/elina.jpg",
   },
   {
     name: "Mutware Kayitare Chris",
-    title: "Tech, Basketball & Pan-Africanism",
-    role: "Tech and Pan-Africanism — product thinking and advocacy.",
+    interests: "Tech, Basketball, Pan-Africanism",
     country: "DR Congo",
     email: "c.mutware@alustudent.com",
     photo: "/team/chris.jpg",
