@@ -97,11 +97,11 @@ export type Member = {
 
 // No job titles/roles are assigned — the members never stated any. Names,
 // countries and interests are taken from the Challenge 01 intro-video
-// transcript. Kevine & Elina weren't profiled in that intro, so they have no
-// stated interests here.
+// transcript; Kevine's & Elina's interests were provided by the team.
 export const team: Member[] = [
   {
     name: "Kevine Umuganwa",
+    interests: "Pan-Africanism, Philosophy, Socialism",
     country: "Rwanda",
     email: "k.umuganwa@alustudent.com",
     photo: "/team/kevine.jpeg",
@@ -130,6 +130,7 @@ export const team: Member[] = [
   },
   {
     name: "Elina Mugiraneza",
+    interests: "Education Access, Empowerment, Advocacy",
     country: "Rwanda",
     email: "e.mugiranez@alustudent.com",
     photo: "/team/elina.jpeg",
