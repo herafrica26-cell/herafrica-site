@@ -84,7 +84,7 @@ export default function Solution() {
                 <span aria-hidden>↗</span>
               </a>
               <p className="mt-3 text-sm text-ink-soft/70">
-                The working prototype is running on the right — go ahead and chat with it.
+                That's the real prototype running in the phone — go ahead and chat with it.
               </p>
             </Reveal>
           </div>

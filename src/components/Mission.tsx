@@ -55,7 +55,7 @@ export default function Mission() {
           <p className="mt-6 font-display text-2xl font-semibold leading-snug tracking-tight sm:text-3xl md:text-[2.35rem] md:leading-[1.25]">
             To tackle the rising rates of <Em>teenage pregnancy</Em> in{" "}
             <Em>Kimironko, Rwanda</Em> by using our technical skills and experience in
-            health to desensitize the <Em>cultural taboos</Em> that drive this issue — and
+            health to break down the <Em>cultural taboos</Em> that drive this issue — and
             to <Em>educate teenagers</Em> on sexual health and the value of informed
             choices.
           </p>

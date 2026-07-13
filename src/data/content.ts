@@ -23,7 +23,7 @@ export const nav = [
 export const mission = {
   eyebrow: "Our Mission",
   statement:
-    "To tackle the rising rates of teenage pregnancy in Kimironko, Rwanda by using our technical skills and experience in health to desensitize the cultural taboos in the African community that drive this issue — and to educate teenagers on sexual health and the value of informed choices.",
+    "To tackle the rising rates of teenage pregnancy in Kimironko, Rwanda by using our technical skills and experience in health to break down the cultural taboos in the African community that drive this issue — and to educate teenagers on sexual health and the value of informed choices.",
   attribution: "The HerAfrica Think Tank",
 };
 
@@ -117,7 +117,7 @@ export const team: Member[] = [
   {
     name: "Ian Misati",
     interests: "Healthcare, Women’s Healthcare",
-    country: "Nairobi, Kenya",
+    country: "Kenya",
     email: "i.misati@alustudent.com",
     photo: "/team/misati.jpeg",
   },
@@ -168,7 +168,7 @@ export const solution = {
     {
       step: 2,
       title: "Get trusted answers",
-      text: "An AI model, pre-prompted to act like a trusted older sister, instantly replies with accurate guidance.",
+      text: "An AI companion, designed to talk like a trusted older sister, replies instantly with accurate guidance.",
     },
     {
       step: 3,
@@ -190,7 +190,7 @@ export const solution = {
       text: "Detects high-risk situations and redirects them to emergency responders.",
     },
     {
-      title: "Zero-data offline access",
+      title: "Works without internet",
       text: "Works over USSD & SMS — no internet or smartphone required.",
     },
   ],

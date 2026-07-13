@@ -91,7 +91,7 @@ export default function Journey() {
         <SectionHeading
           eyebrow="Our E-Lab journey"
           title="The Six Challenges"
-          intro="One term, six challenges, all in our own footage: real visits, real interviews, real pitch nerves. Tap a card to watch."
+          intro="One term, six challenges: real visits, real interviews, real pitch nerves. Tap a card to watch."
           center
           dark
         />
