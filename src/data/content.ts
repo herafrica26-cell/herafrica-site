@@ -8,7 +8,7 @@ export const brand = {
   motto: "Africa 4 Her",
   tagline: "Breaking the silence. Protecting her future.",
   program: "ALU E-Lab",
-  year: 2025,
+  year: 2026,
 };
 
 export const nav = [
@@ -30,8 +30,8 @@ export const mission = {
 export const about = {
   eyebrow: "Who we are",
   heading: "A think tank with empathy at its core",
-  lead: "HerAfrica is a student think tank born in the ALU E-Lab, on a mission to break the “Culture of Silence” around sexual and reproductive health — the silence that pulls young girls out of school and out of their futures.",
-  sub: "We pair real-world experience in health with technology to give teenagers a safe place to learn, ask questions, and grow — free from stigma, shame, or judgement.",
+  lead: "HerAfrica is a student think tank that started in the ALU E-Lab. We want to break the “Culture of Silence” around sexual and reproductive health, because that silence is what pulls young girls out of school and out of their futures.",
+  sub: "Some of us come from health backgrounds, some from tech. We put both together to give teenagers a safe place to learn and ask the questions they can't ask at home.",
   pillars: [
     {
       title: "Educate",
@@ -52,7 +52,7 @@ export const problem = {
   eyebrow: "The challenge we tackle",
   heading: "The Problem",
   statement:
-    "In Kimironko, Rwanda, young girls are forced to put down their academics as a striking rise in teenage pregnancies dims their futures and ambitions. It is driven mainly by backward cultural patterns — forced marriages and elopement — coupled with a lack of education about sexual health. HerAfrica exists to break the silence, disrupt these patterns, and give teenage girls a safe community to grow and bloom in — reducing school dropouts, curbing poverty, eradicating stigma, and empowering young women to build careers and plan their families with intention.",
+    "In Kimironko, Rwanda, more and more girls are dropping out of school because of teenage pregnancy. Behind the numbers sit cultural patterns like forced marriage and elopement, and an almost total silence around sexual health. We started HerAfrica to break that silence and give teenage girls a safe community to grow in, so fewer drop out and more get to plan their own futures.",
   stats: [
     { value: "5% → 8%", label: "Teen pregnancy rate in Rwanda, 2020 → 2026 (RDHS7)" },
     { value: "~65", label: "Estimated new daily cases — derived from the RDHS7 increase" },
@@ -98,7 +98,7 @@ export type Member = {
 // No job titles/roles are assigned — the members never stated any. Names,
 // countries and interests are taken from the Challenge 01 intro-video
 // transcript. Kevine & Elina weren't profiled in that intro, so they have no
-// stated interests here. Photos in public/team/ are placeholders — swap freely.
+// stated interests here.
 export const team: Member[] = [
   {
     name: "Kevine Umuganwa",

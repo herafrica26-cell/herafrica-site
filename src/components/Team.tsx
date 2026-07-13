@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { team, teamStrengths, type Member } from "../data/content";
 import { SectionHeading } from "./ui";
 import Reveal from "./Reveal";
@@ -39,7 +40,7 @@ function MailIcon() {
   );
 }
 
-function MemberCard({ m, i }: { m: Member; i: number }) {
+function MemberCard({ m, i, onOpen }: { m: Member; i: number; onOpen: (m: Member) => void }) {
   return (
     <div className="group flex h-full flex-col items-center px-2 text-center transition-transform duration-300 hover:-translate-y-1.5">
       {/* Circular avatar with an animated gradient ring */}
@@ -53,12 +54,18 @@ function MemberCard({ m, i }: { m: Member; i: number }) {
           }`}
         />
         {m.photo ? (
-          <img
-            src={m.photo}
-            alt={`Portrait of ${m.name}`}
-            loading="lazy"
-            className="relative h-full w-full rounded-full object-cover object-[center_20%] ring-2 ring-white/10 grayscale-[30%] transition-all duration-500 ease-out group-hover:scale-[1.04] group-hover:grayscale-0"
-          />
+          <button
+            onClick={() => onOpen(m)}
+            aria-label={`View larger photo of ${m.name}`}
+            className="relative block h-full w-full cursor-zoom-in rounded-full"
+          >
+            <img
+              src={m.photo}
+              alt={`Portrait of ${m.name}`}
+              loading="lazy"
+              className="h-full w-full rounded-full object-cover object-[center_20%] ring-2 ring-white/10 grayscale-[30%] transition-all duration-500 ease-out group-hover:scale-[1.04] group-hover:grayscale-0"
+            />
+          </button>
         ) : (
           <div
             className={`relative grid h-full w-full place-items-center rounded-full bg-gradient-to-br ring-2 ring-white/10 ${gradients[i % gradients.length]}`}
@@ -101,7 +108,69 @@ function MemberCard({ m, i }: { m: Member; i: number }) {
   );
 }
 
+/** Full-size photo lightbox — closes on Esc, backdrop click, or the × button. */
+function Lightbox({ m, onClose }: { m: Member; onClose: () => void }) {
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => e.key === "Escape" && onClose();
+    window.addEventListener("keydown", onKey);
+    document.body.style.overflow = "hidden";
+    return () => {
+      window.removeEventListener("keydown", onKey);
+      document.body.style.overflow = "";
+    };
+  }, [onClose]);
+
+  return (
+    <div
+      role="dialog"
+      aria-modal="true"
+      aria-label={`Photo of ${m.name}`}
+      className="fixed inset-0 z-[70] flex items-center justify-center p-5"
+      onClick={onClose}
+    >
+      <div className="absolute inset-0 bg-midnight/90 backdrop-blur-sm" />
+      <div
+        className="relative w-full max-w-sm overflow-hidden rounded-3xl bg-midnight-700 shadow-2xl ring-1 ring-white/15"
+        onClick={(e) => e.stopPropagation()}
+      >
+        <img
+          src={m.photo}
+          alt={`Portrait of ${m.name}`}
+          className="aspect-square w-full object-cover object-[center_20%]"
+        />
+        <button
+          onClick={onClose}
+          aria-label="Close"
+          className="absolute right-3 top-3 grid h-9 w-9 place-items-center rounded-full bg-midnight/70 text-lg text-white backdrop-blur transition-colors hover:bg-midnight"
+        >
+          ✕
+        </button>
+        <div className="p-5">
+          <h3 className="font-display text-xl font-bold text-white">{m.name}</h3>
+          {m.interests && (
+            <p className="mt-1.5 text-sm leading-relaxed text-white/70">
+              <span className="font-semibold text-gold">Interests: </span>
+              {m.interests}
+            </p>
+          )}
+          <div className="mt-3 flex items-center gap-3 text-sm text-white/65">
+            <span className="flex items-center gap-1">
+              <span aria-hidden>📍</span> {m.country}
+            </span>
+            <span aria-hidden className="text-white/20">·</span>
+            <a href={`mailto:${m.email}`} className="flex items-center gap-1.5 hover:text-gold">
+              <MailIcon /> Email
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export default function Team() {
+  const [selected, setSelected] = useState<Member | null>(null);
+
   return (
     <section id="team" className="relative overflow-hidden bg-midnight py-24 text-white sm:py-32">
       {/* depth */}
@@ -122,7 +191,7 @@ export default function Team() {
         <SectionHeading
           eyebrow="The people behind HerAfrica"
           title="Meet the Think Tank"
-          intro="Six students from across the continent, uniting health experience and technology to protect African girls."
+          intro="Six students, five countries. Between us: health-care experience, tech skills, and a lot of stubborn optimism."
           center
           dark
         />
@@ -130,7 +199,7 @@ export default function Team() {
         <div className="mt-14 grid gap-x-6 gap-y-12 sm:grid-cols-2 lg:grid-cols-3">
           {team.map((m, i) => (
             <Reveal key={m.email} delay={(i % 3) * 90}>
-              <MemberCard m={m} i={i} />
+              <MemberCard m={m} i={i} onOpen={setSelected} />
             </Reveal>
           ))}
         </div>
@@ -155,6 +224,8 @@ export default function Team() {
           </div>
         </Reveal>
       </div>
+
+      {selected && <Lightbox m={selected} onClose={() => setSelected(null)} />}
     </section>
   );
 }

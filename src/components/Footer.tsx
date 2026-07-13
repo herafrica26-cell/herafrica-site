@@ -46,8 +46,8 @@ export default function Footer() {
         </div>
 
         <div className="mt-12 flex flex-col items-center justify-between gap-3 border-t border-white/10 pt-6 text-sm text-white/60 sm:flex-row">
-          <p>© {brand.year} {brand.name}. All rights reserved.</p>
-          <p>Built for the {brand.program}.</p>
+          <p>© {brand.year} {brand.name}.</p>
+          <p>Our Challenge 06 digital print — made by the six of us for the {brand.program}.</p>
         </div>
       </div>
     </footer>

@@ -103,10 +103,10 @@ export default function Hero() {
             className="fade-up mx-auto mt-6 max-w-xl text-base leading-relaxed text-white/70 sm:text-lg"
             style={{ animationDelay: "240ms" }}
           >
-            A student think tank tackling teenage pregnancy in Kimironko, Rwanda —
-            through education, culture change, and{" "}
-            <span className="font-semibold text-white">HerSafe Space</span>, our
-            anonymous, AI-powered support platform.
+            We're six ALU students taking on teenage pregnancy in Kimironko,
+            Rwanda. Our answer is{" "}
+            <span className="font-semibold text-white">HerSafe Space</span>: an
+            anonymous platform where girls can ask what they can't ask out loud.
           </p>
 
           <div

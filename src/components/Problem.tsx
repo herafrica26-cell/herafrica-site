@@ -1,6 +1,54 @@
+import { useEffect, useRef, useState } from "react";
 import { problem } from "../data/content";
 import { SectionHeading } from "./ui";
 import Reveal from "./Reveal";
+
+/** Counts the numeric parts of a stat string up from 0 when scrolled into view. */
+function StatValue({ value }: { value: string }) {
+  const ref = useRef<HTMLDivElement>(null);
+  const [progress, setProgress] = useState(0);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      setProgress(1);
+      return;
+    }
+    const io = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry.isIntersecting) return;
+        io.disconnect();
+        const t0 = performance.now();
+        const duration = 1400;
+        const tick = (t: number) => {
+          const p = Math.min((t - t0) / duration, 1);
+          setProgress(1 - Math.pow(1 - p, 3)); // ease-out cubic
+          if (p < 1) requestAnimationFrame(tick);
+        };
+        requestAnimationFrame(tick);
+      },
+      { threshold: 0.5 },
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
+
+  const rendered = value.replace(/\d[\d,]*/g, (num) => {
+    const target = parseInt(num.replace(/,/g, ""), 10);
+    const current = Math.round(target * progress);
+    return num.includes(",") ? current.toLocaleString("en-US") : String(current);
+  });
+
+  return (
+    <div
+      ref={ref}
+      className="bg-gradient-to-r from-gold to-coral bg-clip-text font-display text-4xl font-extrabold text-transparent tabular-nums sm:text-5xl"
+    >
+      {rendered}
+    </div>
+  );
+}
 
 /**
  * PROBLEM MEDIA SLOT
@@ -71,9 +119,7 @@ export default function Problem() {
           {problem.stats.map((s, i) => (
             <Reveal key={s.label} delay={i * 90}>
               <div className="h-full rounded-3xl border border-black/[0.06] bg-white/90 p-8 text-center shadow-[0_14px_40px_-18px_rgba(11,27,59,0.25)]">
-                <div className="bg-gradient-to-r from-gold to-coral bg-clip-text font-display text-4xl font-extrabold text-transparent sm:text-5xl">
-                  {s.value}
-                </div>
+                <StatValue value={s.value} />
                 <p className="mx-auto mt-4 max-w-[15rem] text-sm leading-relaxed text-ink-soft">
                   {s.label}
                 </p>
